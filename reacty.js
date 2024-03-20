@@ -117,8 +117,12 @@ determine if the emoji is custom or not
 if it is, then we find the substring of the custom emoji ID to get just the name in a new variable called emojiSub
 emojiSub can be passed to the below try block to read from the database, and the original "emoji" string can be used for the bot's response
     */
+    let emojiSub = emoji.trim(); //remove whitespace
+    if emoji.startsWith('<') {
+        emojiSub = emojiSub.substring(emojiSub.indexOf(':'), emojiSub.lastIndexOf(':')); //find the substring if the emoji is detected as a custom emoji by the leading < sign
+    }
     try {
-        let data = await db.getScore(emoji);
+        let data = await db.getScore(emojiSub); //this will be unicode if the if statement did not pass.
         let results = data
             .map(score => score.username + ": " + score.points)
             .join("\n");
