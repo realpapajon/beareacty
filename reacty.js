@@ -118,7 +118,7 @@ if it is, then we find the substring of the custom emoji ID to get just the name
 emojiSub can be passed to the below try block to read from the database, and the original "emoji" string can be used for the bot's response
     */
     let emojiSub = emojiX.trim(); //remove whitespace
-    if emojiSub.startsWith('<') {
+    if (emojiSub.startsWith('<')) {
         emojiSub = emojiSub.substring(emojiSub.indexOf(':') + 1, emojiSub.lastIndexOf(':')); //find the substring if the emoji is detected as a custom emoji by the leading < sign
     }
     try {
