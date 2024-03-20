@@ -110,6 +110,13 @@ async function pinMessage(message) {
 
 async function getScores(message) {
     let emoji = message.content.substring(7);
+    /*
+string processing:
+remove the leading space
+determine if the emoji is custom or not
+if it is, then we find the substring of the custom emoji ID to get just the name in a new variable called emojiSub
+emojiSub can be passed to the below try block to read from the database, and the original "emoji" string can be used for the bot's response
+    */
     try {
         let data = await db.getScore(emoji);
         let results = data
