@@ -109,7 +109,7 @@ async function pinMessage(message) {
 }
 
 async function getScores(message) {
-    let emoji = message.content.substring(7);
+    let emojiX = message.content.substring(7);
     /*
 string processing:
 remove the leading space
@@ -117,16 +117,16 @@ determine if the emoji is custom or not
 if it is, then we find the substring of the custom emoji ID to get just the name in a new variable called emojiSub
 emojiSub can be passed to the below try block to read from the database, and the original "emoji" string can be used for the bot's response
     */
-    let emojiSub = emoji.trim(); //remove whitespace
-    if emoji.startsWith('<') {
-        emojiSub = emojiSub.substring(emojiSub.indexOf(':'), emojiSub.lastIndexOf(':')); //find the substring if the emoji is detected as a custom emoji by the leading < sign
+    let emojiSub = emojiX.trim(); //remove whitespace
+    if emojiSub.startsWith('<') {
+        emojiSub = emojiSub.substring(emojiSub.indexOf(':') + 1, emojiSub.lastIndexOf(':')); //find the substring if the emoji is detected as a custom emoji by the leading < sign
     }
     try {
         let data = await db.getScore(emojiSub); //this will be unicode if the if statement did not pass.
         let results = data
             .map(score => score.username + ": " + score.points)
             .join("\n");
-        let response = "Scores for " + emoji + " are as follows:\n" + results;
+        let response = "Scores for " + emojiX + " are as follows:\n" + results;
         message.channel.send(response);
     }
     catch (err) {
