@@ -1,10 +1,8 @@
-# reacty
+# beareacty
 A Discord bot that logs reactions and shows statistics or pins messages.
 
 ## Description
-Created for the What A Shame community to settle once and for all, who is the funniest person there. Anytime a reaction is made to a message it is logged and any user can call out to get the statistics for a specific emoji.
-
-Upon request I also added the possibility to log/pin messages in a separate channel to get around the pinned posts limit in Discord.
+A fork of Reacty that changes command behavior to allow for calling the !scores command with a custom emoji.
 
 ## Usage
 Any time a message is reacted to the emoji-count for that emoji and that message owner is updated. Decreases counter when emoji is removed as well.
